@@ -79,7 +79,7 @@ final class SubscriptionNode<P: Publisher>: HTMLWrappingNode
     self.content      = content
   }
   
-  func invoke(_ webID: [String], in context: TreeStateContext) throws {
+  func invoke(_ webID: [String], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     if elementID.count == webID.count {
       #if false // here we need the value ...
@@ -89,7 +89,7 @@ final class SubscriptionNode<P: Publisher>: HTMLWrappingNode
       #endif
     }
     else {
-      try content.invoke(webID, in: context)
+      try await content.invoke(webID, in: context)
     }
   }
   

@@ -11,7 +11,7 @@ struct SUIButtonNode: HTMLWrappingActionNode {
   let elementID : ElementID
   let isEnabled : Bool
   let isActive  : Bool
-  let action    : () -> Void
+  let action    : () async -> Void
   let content   : HTMLTreeNode
   
   func nodeByApplyingNewContent(_ newContent: HTMLTreeNode) -> Self {

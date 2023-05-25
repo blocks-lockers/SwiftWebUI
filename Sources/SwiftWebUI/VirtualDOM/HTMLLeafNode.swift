@@ -21,11 +21,11 @@ extension HTMLLeafNode {
   }
   
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     throw WebInvocationError.inactiveElement(webID)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     throw WebInvocationError.inactiveElement(webID)
   }
 

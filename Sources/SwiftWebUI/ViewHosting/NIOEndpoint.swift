@@ -138,11 +138,11 @@ public final class NIOEndpoint {
     }
   }
   
-  private func handle(event: SwiftUIEvent, response: ServerResponse) throws {
+  private func handle(event: SwiftUIEvent, response: ServerResponse) async throws {
     guard let session = sessions[event.wosid] else {
       return response.fail(.contextNotFound)
     }
-    try session.handle(event: event, response: response)
+      try await session.handle(event: event, response: response)
   }
   
   
@@ -181,7 +181,7 @@ public final class NIOEndpoint {
     return response.send(content)
   }
 
-  private func handle(request: HTTPRequestHead, response: ServerResponse) {
+  private func handle(request: HTTPRequestHead, response: ServerResponse) async {
     // Yup, this is pretty hardcoded, but we don't do that much here.
     
     #if DEBUG && true
@@ -211,7 +211,7 @@ public final class NIOEndpoint {
       if request.method == .POST {
         // FIXME: decode this from a JSON body ...
         if let event = SwiftUIEvent(queryParameters: request.queryParameters) {
-          return try handle(event: event, response: response)
+          return try await handle(event: event, response: response)
         }
         else {
           return response.fail(.missingEventData)
@@ -292,7 +292,7 @@ public final class NIOEndpoint {
     init(endpoint: NIOEndpoint) {
       self.endpoint = endpoint
     }
-
+      
     func channelRead(context: ChannelHandlerContext, data: NIOAny) {
       let reqPart = self.unwrapInboundIn(data)
       
@@ -300,7 +300,7 @@ public final class NIOEndpoint {
         case .head(let header):
           let res = ServerResponse(request: header,
                                    channel: context.channel)
-          endpoint.handle(request: header, response: res)
+          Task { await endpoint.handle(request: header, response: res) }
 
         // ignore incoming content to keep it micro :-)
         case .body, .end: break

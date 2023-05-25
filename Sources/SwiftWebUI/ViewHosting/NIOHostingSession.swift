@@ -22,7 +22,7 @@ final class NIOHostingSession {
     self.sessionID = sessionID
     self.rootView  = AnyView(view)
     
-    let treeContext = TreeStateContext()
+      let treeContext = TreeStateContext()
 
     self.treeContext = treeContext
     
@@ -41,13 +41,12 @@ final class NIOHostingSession {
   
   // MARK: - AJAX Event Handler
   
-  func handle(event: SwiftUIEvent, response: ServerResponse) throws {
-
+  func handle(event: SwiftUIEvent, response: ServerResponse) async throws {
     // takeValuesFromRequest
     
     if let value = event.value {
       if debugRequestPhases { print("RP: taking value: \(value) ..") }
-      try tree.takeValue(event.webID, value: value, in: treeContext)
+      try await tree.takeValue(event.webID, value: value, in: treeContext)
       if debugRequestPhases { print("RP: did take value.") }
     }
     else if debugRequestPhases { print("RP: not taking values ..") }
@@ -57,7 +56,7 @@ final class NIOHostingSession {
     if debugRequestPhases {
       print("RP: invoke: \(event.webID.joined(separator: ".")) ..")
     }
-    try tree.invoke(event.webID, in: treeContext)
+    try await tree.invoke(event.webID, in: treeContext)
     if debugRequestPhases { print("RP: did invoke.") }
     
     // check whether the invocation invalidated any components

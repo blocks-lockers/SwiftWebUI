@@ -26,7 +26,7 @@ struct SUITabContainerNode<SelectionValue: Hashable>: HTMLTreeNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.isContainedInWebID(webID) else { return }
     
@@ -35,10 +35,10 @@ struct SUITabContainerNode<SelectionValue: Hashable>: HTMLTreeNode {
       print("process value?!", self)
     }
     
-    try tabItems.takeValue(webID, value: value, in: context)
-    try content .takeValue(webID, value: value, in: context)
+    try await tabItems.takeValue(webID, value: value, in: context)
+    try await content .takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     
     if elementID.count == webID.count {
@@ -46,8 +46,8 @@ struct SUITabContainerNode<SelectionValue: Hashable>: HTMLTreeNode {
       print("process selection event", self)
     }
     
-    try tabItems.invoke(webID, in: context)
-    try content .invoke(webID, in: context)
+    try await tabItems.invoke(webID, in: context)
+    try await content .invoke(webID, in: context)
   }
   
   func generateHTML(into html: inout String) {

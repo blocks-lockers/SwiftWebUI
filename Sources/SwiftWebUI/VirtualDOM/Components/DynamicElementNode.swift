@@ -41,7 +41,7 @@ class _DynamicElementNode: HTMLTreeNode {
     fatalError("subclass responsibility: \(#function)")
   }
   func execute<R>(in context: TreeStateContext,
-                  _ execute: () throws -> R) throws -> R
+                  _ execute: () async throws -> R) async throws -> R
   {
     fatalError("subclass responsibility: \(#function)")
   }
@@ -49,18 +49,18 @@ class _DynamicElementNode: HTMLTreeNode {
   // MARK: - WOResponder
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.isContainedInWebID(webID) else { return }
-    try execute(in: context) {
-      try child?.takeValue(webID, value: value, in: context)
+    try await execute(in: context) {
+        try await child?.takeValue(webID, value: value, in: context)
     }
   }
 
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
-    try execute(in: context) {
-      try child?.invoke(webID, in: context)
+    try await execute(in: context) {
+        try await child?.invoke(webID, in: context)
     }
   }
 
@@ -149,14 +149,14 @@ final class DynamicElementNode<V: View>: _DynamicElementNode,
     return execute()
   }
   override
-  func execute<R>(in context: TreeStateContext, _ execute: () throws -> R)
-         throws -> R
+  func execute<R>(in context: TreeStateContext, _ execute: () async throws -> R)
+         async throws -> R
   {
     // TBD: Use `rethrows`? Which I knew Swift ...
-    guard case .dynamic = view.lookupTypeInfo() else { return try execute() }
+    guard case .dynamic = view.lookupTypeInfo() else { return try await execute() }
     context.enterComponent(self)
     defer { context.leaveComponent(self) }
-    return try execute()
+    return try await execute()
   }
 
   override func buildChild(in context: TreeStateContext) -> HTMLTreeNode {

@@ -8,7 +8,7 @@
 
 public extension View {
   
-  func onTapGesture(count: Int = 1, _ action: @escaping () -> Void)
+  func onTapGesture(count: Int = 1, _ action: @escaping () async -> Void)
        -> TapActionView<Self>
   {
     assert(count < 2, "only supporting single-click")
@@ -20,7 +20,7 @@ public extension View {
 public struct TapActionView<Content: View>: View {
   public typealias Body = Never
   let count   : Int
-  let action  : () -> Void
+  let action  : () async -> Void
   let content : Content
 }
 

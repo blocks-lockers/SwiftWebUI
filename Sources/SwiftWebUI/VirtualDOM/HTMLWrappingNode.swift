@@ -27,14 +27,14 @@ extension HTMLWrappingNode {
   }
   
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.isContainedInWebID(webID) else { return }
-    try content.takeValue(webID, value: value, in: context)
+    try await content.takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
-    try content.invoke(webID, in: context)
+    try await content.invoke(webID, in: context)
   }
   
   func generateChanges(from   oldNode : HTMLTreeNode,

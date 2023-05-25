@@ -28,14 +28,14 @@ struct ResolvedConditionNode: HTMLWrappingNode {
   
   // TODO: appendValue
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     
     let componentID = webID[elementID.count]
     switch componentID {
-      case "1": if flag  { try content.invoke(webID, in: context) }
-      case "0": if !flag { try content.invoke(webID, in: context) }
+      case "1": if flag  { try await content.invoke(webID, in: context) }
+      case "0": if !flag { try await content.invoke(webID, in: context) }
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }

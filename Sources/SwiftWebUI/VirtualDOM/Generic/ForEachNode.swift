@@ -29,7 +29,7 @@ struct ForEachNode<ID: Hashable> : HTMLTreeNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
@@ -41,9 +41,9 @@ struct ForEachNode<ID: Hashable> : HTMLTreeNode {
       throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
     
-    try children[idx].takeValue(webID, value: value, in: context)
+    try await children[idx].takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     
@@ -54,7 +54,7 @@ struct ForEachNode<ID: Hashable> : HTMLTreeNode {
       throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
     
-    try children[idx].invoke(webID, in: context)
+    try await children[idx].invoke(webID, in: context)
   }
 
   public func dump(nesting: Int) {

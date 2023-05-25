@@ -24,16 +24,16 @@ struct SUIListNode<Selection: SelectionManager>: HTMLTreeNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.isContainedInWebID(webID) else { return }
     assert(elementID.count != webID.count, "unexpected takeValue on list node")
-    try content.takeValue(webID, value: value, in: context)
+    try await content.takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     assert(elementID.count != webID.count, "unexpected invoke on list node")
-    try content.invoke(webID, in: context)
+    try await content.invoke(webID, in: context)
   }
   
   func generateHTML(into html: inout String) {

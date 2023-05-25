@@ -18,13 +18,13 @@ struct SUIInputNode: HTMLLeafNode {
   let onCommit         : (()       -> Void)?
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     context.ignoreValueChange(value, for: elementID)
     binding.wrappedValue = value
   }
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     
     // FIXME: just add the event type to the elementID?

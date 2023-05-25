@@ -12,27 +12,27 @@ public struct Button<Label: View>: View {
 
   public var body : Self.Body { return label }
   
-  let action : () -> Void
+  let action : () async -> Void
   let label  : Label
   
   @available(*, deprecated, renamed: "init(action:label:)")
-  public init(_ action: @escaping () -> Void, @ViewBuilder label: () -> Label) {
+  public init(_ action: @escaping () async -> Void, @ViewBuilder label: () -> Label) {
     self.action = action
     self.label  = label()
   }
-  public init(action: @escaping () -> Void, @ViewBuilder label: () -> Label) {
+  public init(action: @escaping () async -> Void, @ViewBuilder label: () -> Label) {
     self.action = action
     self.label  = label()
   }
 
-  init(action: @escaping () -> Void, label: Label) {
+  init(action: @escaping () async -> Void, label: Label) {
     self.action = action
     self.label  = label
   }
 }
 
 public extension Button where Label == ButtonStyleLabel {
-  init<T: View>(action: @escaping () -> Void, label: T) {
+  init<T: View>(action: @escaping () async -> Void, label: T) {
     self.action = action
     self.label  = ButtonStyleLabel(label)
   }
@@ -40,7 +40,7 @@ public extension Button where Label == ButtonStyleLabel {
 
 public extension Button where Label == Text {
 
-  init<S: StringProtocol>(_ title: S, action: @escaping () -> Void) {
+  init<S: StringProtocol>(_ title: S, action: @escaping () async -> Void) {
     self.action = action
     self.label  = Text(title)
   }

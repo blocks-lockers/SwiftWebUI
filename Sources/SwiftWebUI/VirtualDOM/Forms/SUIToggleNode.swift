@@ -27,13 +27,13 @@ struct SUIToggleNode: HTMLWrappingNode {
     binding.wrappedValue = value == "on"
   }
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     if elementID.count == webID.count {
       return // this actually does happen, we also get the invoke call
     }
     else {
-      try content.invoke(webID, in: context)
+      try await content.invoke(webID, in: context)
     }
   }
   

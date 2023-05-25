@@ -58,10 +58,10 @@ public protocol HTMLTreeNode {
   // MARK: - WOResponder
   
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
     // FIXME: API naming
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws
     // FIXME: the API naming is not nice, but convenient ;-)
   
   func generateHTML(into html: inout String)

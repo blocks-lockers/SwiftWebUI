@@ -23,14 +23,14 @@ struct HTMLOptionNode<S: Hashable>: HTMLWrappingNode {
                           content: newContent)
   }
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     if elementID.count == webID.count {
       binding.wrappedValue = tag
       return
     }
     else { // this should be rare
-      try content.invoke(webID, in: context)
+      try await content.invoke(webID, in: context)
     }
   }
   

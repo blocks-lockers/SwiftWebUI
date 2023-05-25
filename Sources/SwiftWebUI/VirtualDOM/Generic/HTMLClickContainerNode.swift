@@ -11,7 +11,7 @@ struct HTMLClickContainerNode: HTMLWrappingActionNode {
   let elementID : ElementID
   let isEnabled : Bool
   let isDouble  : Bool
-  let action    : () -> Void
+  let action    : () async -> Void
   let content   : HTMLTreeNode
   
   func nodeByApplyingNewContent(_ newContent: HTMLTreeNode) -> Self {

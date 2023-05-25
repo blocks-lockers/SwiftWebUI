@@ -18,9 +18,9 @@ struct SUITabItemNode: HTMLWrappingNode {
                           contentID: contentID, content: newContent)
   }
 
-  func invoke(_ webID: [String], in context: TreeStateContext) throws {
+  func invoke(_ webID: [String], in context: TreeStateContext) async throws {
     // FIXME: detect clicks? Only necessary for non-JS
-    try content.invoke(webID, in: context)
+    try await content.invoke(webID, in: context)
   }
   
   func generateHTML(into html: inout String) {

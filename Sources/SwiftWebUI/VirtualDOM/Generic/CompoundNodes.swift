@@ -31,25 +31,25 @@ struct CompoundNode2: HTMLTupleNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.takeValue(webID, value: value, in: context)
-      case "1": try t2.takeValue(webID, value: value, in: context)
+      case "0": try await t1.takeValue(webID, value: value, in: context)
+      case "1": try await t2.takeValue(webID, value: value, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -103,27 +103,27 @@ struct CompoundNode3: HTMLTupleNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.takeValue(webID, value: value, in: context)
-      case "1": try t2.takeValue(webID, value: value, in: context)
-      case "2": try t3.takeValue(webID, value: value, in: context)
+      case "0": try await t1.takeValue(webID, value: value, in: context)
+      case "1": try await t2.takeValue(webID, value: value, in: context)
+      case "2": try await t3.takeValue(webID, value: value, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -179,29 +179,29 @@ struct CompoundNode4: HTMLTupleNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.takeValue(webID, value: value, in: context)
-      case "1": try t2.takeValue(webID, value: value, in: context)
-      case "2": try t3.takeValue(webID, value: value, in: context)
-      case "3": try t4.takeValue(webID, value: value, in: context)
+      case "0": try await t1.takeValue(webID, value: value, in: context)
+      case "1": try await t2.takeValue(webID, value: value, in: context)
+      case "2": try await t3.takeValue(webID, value: value, in: context)
+      case "3": try await t4.takeValue(webID, value: value, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -257,31 +257,31 @@ struct CompoundNode5: HTMLTupleNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.takeValue(webID, value: value, in: context)
-      case "1": try t2.takeValue(webID, value: value, in: context)
-      case "2": try t3.takeValue(webID, value: value, in: context)
-      case "3": try t4.takeValue(webID, value: value, in: context)
-      case "4": try t5.takeValue(webID, value: value, in: context)
+      case "0": try await t1.takeValue(webID, value: value, in: context)
+      case "1": try await t2.takeValue(webID, value: value, in: context)
+      case "2": try await t3.takeValue(webID, value: value, in: context)
+      case "3": try await t4.takeValue(webID, value: value, in: context)
+      case "4": try await t5.takeValue(webID, value: value, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
-      case "4": try t5.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
+      case "4": try await t5.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -340,17 +340,17 @@ struct CompoundNode6: HTMLTupleNode {
     self.t6 = t6
   }
 
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
-      case "4": try t5.invoke(webID, in: context)
-      case "5": try t6.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
+      case "4": try await t5.invoke(webID, in: context)
+      case "5": try await t6.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -415,18 +415,18 @@ struct CompoundNode7: HTMLTupleNode {
     self.t6 = t6; self.t7 = t7
   }
 
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
-      case "4": try t5.invoke(webID, in: context)
-      case "5": try t6.invoke(webID, in: context)
-      case "6": try t7.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
+      case "4": try await t5.invoke(webID, in: context)
+      case "5": try await t6.invoke(webID, in: context)
+      case "6": try await t7.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -495,19 +495,19 @@ struct CompoundNode8: HTMLTupleNode {
     self.t6 = t6; self.t7 = t7; self.t8 = t8
   }
 
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
-      case "4": try t5.invoke(webID, in: context)
-      case "5": try t6.invoke(webID, in: context)
-      case "6": try t7.invoke(webID, in: context)
-      case "7": try t8.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
+      case "4": try await t5.invoke(webID, in: context)
+      case "5": try await t6.invoke(webID, in: context)
+      case "6": try await t7.invoke(webID, in: context)
+      case "7": try await t8.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -579,20 +579,20 @@ struct CompoundNode9: HTMLTupleNode {
     self.t6 = t6; self.t7 = t7; self.t8 = t8; self.t9 = t9
   }
 
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     let componentID = webID[elementID.count]
     switch componentID {
-      case "0": try t1.invoke(webID, in: context)
-      case "1": try t2.invoke(webID, in: context)
-      case "2": try t3.invoke(webID, in: context)
-      case "3": try t4.invoke(webID, in: context)
-      case "4": try t5.invoke(webID, in: context)
-      case "5": try t6.invoke(webID, in: context)
-      case "6": try t7.invoke(webID, in: context)
-      case "7": try t8.invoke(webID, in: context)
-      case "8": try t9.invoke(webID, in: context)
+      case "0": try await t1.invoke(webID, in: context)
+      case "1": try await t2.invoke(webID, in: context)
+      case "2": try await t3.invoke(webID, in: context)
+      case "3": try await t4.invoke(webID, in: context)
+      case "4": try await t5.invoke(webID, in: context)
+      case "5": try await t6.invoke(webID, in: context)
+      case "6": try await t7.invoke(webID, in: context)
+      case "7": try await t8.invoke(webID, in: context)
+      case "8": try await t9.invoke(webID, in: context)
       default:
         throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
@@ -656,7 +656,7 @@ extension HTMLTupleNode {
   }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     // FIXME: getting lazy. Instantiate proper efficient children
     guard elementID.count < webID.count       else { return }
@@ -669,7 +669,7 @@ extension HTMLTupleNode {
     guard idx >= 0 && idx < children.count else {
       throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
-    try children[idx].takeValue(webID, value: value, in: context)
+    try await children[idx].takeValue(webID, value: value, in: context)
   }
 }
 
@@ -707,7 +707,7 @@ struct CompoundNode: HTMLTreeNode {
   var isContentNode  : Bool { return false }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
@@ -718,9 +718,9 @@ struct CompoundNode: HTMLTreeNode {
     guard idx >= 0 && idx < children.count else {
       throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
-    try children[idx].takeValue(webID, value: value, in: context)
+    try await children[idx].takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     
@@ -731,7 +731,7 @@ struct CompoundNode: HTMLTreeNode {
       throw WebInvocationError
               .unexpectedComponentID(webID, webID[elementID.count])
     }
-    try children[componentID].invoke(webID, in: context)
+    try await children[componentID].invoke(webID, in: context)
   }
   
   func generateHTML(into html: inout String) {
@@ -787,7 +787,7 @@ struct TypedCompoundNode<Node: HTMLTreeNode>: HTMLTreeNode {
   var isContentNode  : Bool { return false }
 
   func takeValue(_ webID: [ String ], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
@@ -798,9 +798,9 @@ struct TypedCompoundNode<Node: HTMLTreeNode>: HTMLTreeNode {
     guard idx >= 0 && idx < children.count else {
       throw WebInvocationError.unexpectedComponentID(webID, componentID)
     }
-    try children[idx].takeValue(webID, value: value, in: context)
+    try await  children[idx].takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.count < webID.count       else { return }
     guard elementID.isContainedInWebID(webID) else { return }
     
@@ -811,7 +811,7 @@ struct TypedCompoundNode<Node: HTMLTreeNode>: HTMLTreeNode {
       throw WebInvocationError
               .unexpectedComponentID(webID, webID[elementID.count])
     }
-    try children[componentID].invoke(webID, in: context)
+    try await children[componentID].invoke(webID, in: context)
   }
   
   func generateHTML(into html: inout String) {

@@ -8,18 +8,18 @@
 
 public protocol HTMLWrappingActionNode: HTMLWrappingNode {
   var isEnabled : Bool         { get }
-  var action    : () -> Void   { get }
+  var action    : () async -> Void   { get }
 }
 
 extension HTMLWrappingActionNode {
   
-  func invoke(_ webID: [ String ], in context: TreeStateContext) throws {
+  func invoke(_ webID: [ String ], in context: TreeStateContext) async throws {
     guard elementID.isContainedInWebID(webID) else { return }
     if elementID.count == webID.count {
-      action()
+      await action()
     }
     else {
-      try content.invoke(webID, in: context)
+      try await content.invoke(webID, in: context)
     }
   }
   

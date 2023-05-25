@@ -23,14 +23,14 @@ struct SUIListItemNode<Selection: SelectionManager>: HTMLWrappingNode {
   }
   
   func takeValue(_ webID: [String], value: String,
-                 in context: TreeStateContext) throws
+                 in context: TreeStateContext) async throws
   {
     // Note: The HTMLWrappingNode checks for our own elementID first,
     //       which is not what we want here, because _our_ ID is the real
     //       ID *plus* our "|" marker.
-    try content.takeValue(webID, value: value, in: context)
+    try await content.takeValue(webID, value: value, in: context)
   }
-  func invoke(_ webID: [String], in context: TreeStateContext) throws {
+  func invoke(_ webID: [String], in context: TreeStateContext) async throws {
     // Note: The HTMLWrappingNode checks for our own elementID first,
     //       which is not what we want here, because _our_ ID is the real
     //       ID *plus* our "|" marker.
@@ -44,7 +44,7 @@ struct SUIListItemNode<Selection: SelectionManager>: HTMLWrappingNode {
       return
     }
 
-    try content.invoke(webID, in: context)
+    try await content.invoke(webID, in: context)
   }
 
   var onClickValue: String { return "SwiftUI.click(this,event);return false" }
